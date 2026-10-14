@@ -1,0 +1,61 @@
+# 0 . Install Below Packages
+backtrader==1.9.78.123
+bayesian-optimization==1.4.3
+bokeh==3.8.2
+dash-core-components==2.0.0
+dash-html-components==2.0.0
+gputil==1.4.0
+gymnasium==1.2.2
+h5py==3.15.1
+holidays==0.86
+matplotlib==3.10.7
+memray==1.19.1
+notebook==7.4.7
+numpy==2.2.6
+openpyxl==3.1.5
+pandas==2.3.1
+plotly==6.3.1
+progiter==2.0.0
+py-spy==0.4.1
+pyarrow==20.0.0
+pykalman==0.11.0
+PyQt6==6.10.0
+ray[default]==2.55.0
+ray[rllib]==2.55.0
+requests==2.32.4
+riskfolio-lib==7.0.1
+seaborn==0.13.2
+scikit-learn==1.7.0
+scipy==1.15.3 # strict
+snakeviz==2.2.2
+statsmodels==0.14.4
+setuptools==80.9.0
+s-tui==1.2.0
+ta-lib==0.6.8
+tensorboard==2.20.0
+torch==2.9.1
+torchvision==0.24.1
+
+# 1. Install 'tkinter' Package (for Plotting with 'backtrader' Package)
+# - Type the following command: sudo apt-get install python3-tk
+
+# 2. Install Trading Technical Indicators (TTI) Package (Version: 0.2.2)
+#   - Clone the following repository: https://github.com/vsaveris/trading-technical-indicators
+#   - Install the package in local uv or pip environment (use command pip3 install . or uv pip install .)
+#   - A version of this package is also included in the packages/ directory.
+
+# 3. Install Interactive Brokers API (IBAPI) Package (Version: 10.30.1)
+#   - Go to the following webpage: https://interactivebrokers.github.io/
+#   - Click 'I Agree', 'TWS API Stable for Mac/Unix' to download the zip file
+#   - Unzip if it's a zip file: sudo unzip twsapi_macunix.n.m.zip -d $HOME/ or install if it's a .sh file using ./**installer**.sh
+#   - Change directory to the folder where the files are installed
+#   - Provide higher permissions to the files by typing the following command: chmod -R 777 *
+#   - Go to source/pythonclient (with setup.py file inside)
+#   - Install the package in local uv or pip environment (use command pip3 install . or uv pip install .)
+
+# 4. Install Trader Work Station (TWS)
+#   - Go to the following webpage: https://www.interactivebrokers.com/en/trading/tws.php#tws-software
+#   - Click 'TWS Latest', 'Download'
+#   - Change directory to the folder where the setup file was downloaded
+#   - Provide higher permissions to the files by typing the following command; chmod u+x tws-latest-linux-x64.sh
+#   - Run the installer: ./tws-latest-linux-x64.sh
