@@ -23,7 +23,7 @@ PROGRAM_NAME = 'helios'
 PROGRAM_VERSION = '2.0.0'
 
 # specify root path
-ROOT_PATH = '/home/tonmoyroy/tonmoy_projects/project_helios/'
+ROOT_PATH = '/home/mypc/git/project_helios/'
 
 # specify model save directory
 MODEL_SAVE_PATH = '/mnt/Secondary/ray_models/'

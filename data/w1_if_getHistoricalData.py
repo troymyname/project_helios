@@ -706,7 +706,6 @@ if __name__ == '__main__':
                     simulated_on = True
                 )
             )
-
             # calculate peaks and troughs
             temp_df['peaks'], temp_df['troughs'] = w2_calculatePeaksAndTroughs(
                 closing_price_df = temp_df['close'],

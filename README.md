@@ -139,6 +139,16 @@ project_helios/
 └── .git/
 ```
 
+## Python File Naming Conventions
+
+Python filenames use worker-level prefixes to communicate a module's role:
+
+- `w1_` identifies a level 1 worker.
+- `w2_` identifies a level 2 worker.
+- `if` in a filename identifies a module containing functions or classes that interface with external APIs. For example, `w1_if_getLiveData.py`.
+
+Dependencies should flow from higher-level orchestration to lower-level workers: level 1 workers, along with `train.py`, `tune.py`, and `trade_v2.py`, may call level 2 workers. Level 2 workers must not call level 1 workers.
+
 ## Configuration and Environment
 
 The project relies on `config.py` for runtime settings such as:
@@ -303,23 +313,19 @@ The Python dependencies are listed in `requirements.txt` and include, among othe
 - statsmodels
 - IBKR client tooling (via local installation workflow)
 
-Create and activate a Python environment, then install the requirements:
+Create and activate a Python environment (for Python 3.10), then install the requirements:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 # or
+uv venv .venv --python 3.10
+source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
 Follow the remaining setup notes in `requirements.txt` for additional system packages and components not handled by the install command.
-
-The project also references additional package installation steps in `setup_instructions.txt`, including:
-
-- GCC and CUDA/cuDNN setup notes
-- GPU environment configuration
-- PyTorch CUDA build instructions
-- IBAPI installation guidance
-- TWS / IBKR installation walkthrough
 
 ## Important Notes
 
@@ -355,4 +361,3 @@ Project Helios is a modular, research-first equities trading platform that combi
 - IBKR execution interfaces
 
 It is intended for research and simulation-first workflow development of automated equity trading strategies.
-
