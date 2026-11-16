@@ -136,6 +136,77 @@ def w1_generateAnalysisReport(
         height_policy = 'auto',
         styles = {'font-size':'8pt', 'color': 'black', 'font-family': 'arial'}
     )
+
+    # ==== ==== construct sub heading #0
+    sub_heading_one_str = f'Daily Price History (Maximum)'
+    sub_heading_0_obj = Paragraph(
+        text = sub_heading_one_str,
+        width = document_width_int,
+        height_policy = 'auto',
+        styles = {'font-size':'12pt', 'color': 'black', 'font-weight': 'bold', 'font-family': 'arial'}
+    )
+    # ==== ====
+
+    # ==== ==== construct sub plot #0-1
+    sub_plot_01_obj = figure(
+        x_axis_type = 'datetime',
+        tools = plot_function_str,
+        width = document_width_int,
+        title = 'Daily Price History (Maximum)'
+    )
+    sub_plot_01_obj.grid.grid_line_alpha = 0.5
+    sub_plot_01_obj.xaxis.axis_label = 'Time'
+    sub_plot_01_obj.yaxis.axis_label = 'Price'
+    # map dataframe indices to date strings and use as label overrides
+    # sub_plot_01_obj.xaxis.major_label_overrides = {i: date.strftime('%b %d') for i, date in enumerate(pd.to_datetime(plot_data_minutely_df['date'].values))}
+    # sub_plot_01_obj.xaxis.major_label_orientation = pi/4
+    sub_plot_01_obj.xaxis.visible = False
+
+    # render price and indicator lines
+    sub_plot_01_obj.line(
+        x = historical_data_daily_df['date'],
+        y = historical_data_daily_df['open'],
+        legend_label = 'Open Price',
+        color = Spectral4[0],
+        alpha = plot_alpha_flt
+    )
+    sub_plot_01_obj.line(
+        x = historical_data_daily_df['date'],
+        y = historical_data_daily_df['high'],
+        legend_label = 'High Price',
+        color = Spectral4[1],
+        alpha = plot_alpha_flt
+    )
+    sub_plot_01_obj.line(
+        x = historical_data_daily_df['date'],
+        y = historical_data_daily_df['low'],
+        legend_label = 'Low Price',
+        color = Spectral4[2],
+        alpha = plot_alpha_flt
+    )
+    sub_plot_01_obj.line(
+        x = historical_data_daily_df['date'],
+        y = historical_data_daily_df['close'],
+        legend_label = 'Close Price',
+        color = Spectral4[3],
+        alpha = plot_alpha_flt
+    )
+
+    # add capability for information display when hovered around plot
+    hover_01_obj = HoverTool(
+        tooltips = [
+            ('Date/Time', '@x{%Y-%m-%d %H:%M:%S}'),
+            ('Value', '$@y{0.00}')
+        ],
+        formatters = {'@x': 'datetime'}
+    )
+    sub_plot_01_obj.add_tools(hover_01_obj)
+
+    # configure legend location
+    sub_plot_01_obj.legend.location = 'top_left'
+    # show x-axis labels
+    sub_plot_01_obj.xaxis.visible = True
+    # ==== ====
     
     # ==== ==== construct sub heading #1
     sub_heading_one_str = f'Daily Price & Volume History for {display_range_daily_int} Days'
@@ -553,6 +624,8 @@ def w1_generateAnalysisReport(
     grid_plot_obj = gridplot(
         children = [
             main_header_obj,
+            sub_heading_0_obj,
+            sub_plot_01_obj,
             sub_heading_1_obj,
             sub_plot_11_obj,
             sub_plot_12_obj,
