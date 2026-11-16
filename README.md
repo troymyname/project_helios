@@ -1,4 +1,4 @@
-# Project Helios
+![Helios](helios.png)
 
 Project Helios is a research-focused algorithmic trading system for equity selection and execution. It combines market-data collection, feature engineering, reinforcement learning, portfolio optimization, and reporting into a single workflow for strategy research and experimentation.
 
